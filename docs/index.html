@@ -1,68 +1,138 @@
 <!DOCTYPE html>
-<html>
+  <!-- Coding by CodingLab | www.codinglabweb.com -->
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>🤯 Hyunseok's TIL</title>
-  <link rel="stylesheet" href="resources/style.css">
-  <!-- Boxicons  CDN Link -->
-  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel="stylesheet"
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Hyunseok's TIL</title
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/style.css">
+    <!-- ===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
-  <div class="sidebar">
-    <div class="logo_content">
-      <div class="logo">
-        <i class='bx bxs-calendar'></i>
-        <div class= "logo_name">Index</div>
-      </div>
-      <i class='bx bx-menu' id="btn"></i>
-    </div>
-    <ul class="nav_list">
-      <li>
-          <i class='bx bx-search'></i>
-          <input type="text" placeholder="Search...">
-        <!--span class="tooltip">Dashboard</span> -->
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-math' ></i>
-          <span class="links_name">Algorithm</span>
-        </a>
-        <!--span class="tooltip">Dashboard</span> -->
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bxl-java' ></i>
-          <span class="links_name">Java Theory</span>
-        </a>
-        <!--span class="tooltip">Dashboard</span> -->
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bxl-spring-boot' ></i>
-          <span class="links_name">Spring</span>
-        </a>
-        <!--span class="tooltip">Dashboard</span> -->
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-book-bookmark' ></i>
-          <span class="links_name">정보처리기사 시험준비</span>
-        </a>
-        <!--span class="tooltip">Dashboard</span> -->
-      </li>
-    </ul>
-    <div class="profile_content"
-      <div class="profile">
-        <div class="profile_details">
-          <div class="name_job">
-            <div class="name">khsexk</div>
-            <div class="job">TUK Student</div>
-          </div>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="resources/pfimg.jpeg" alt="">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">khsexk's TIL</span>
+                    <span class="profession">Today I Learned</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+
+                <ul class="menu-links">
+                    <!-- Home -->
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <!-- Algorithm -->
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-math icon' ></i>
+                            <span class="text nav-text">Algorithm</span>
+                        </a>
+                    </li>
+                    <!-- java -->
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxl-java icon'></i>
+                            <span class="text nav-text">Java</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxl-spring-boot icon' ></i>
+                            <span class="text nav-text">Spring</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-book-bookmark icon' ></i>
+                            <span class="text nav-text">정보처리기사 필기</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bxi-Github icon' ></i>
+                        <span class="text nav-text">Go to Github</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+
+    </nav>
+
+    <section class="home">
+        <div class="text">Dashboard Sidebar</div>
+    </section>
+
+    <script>
+        const body = document.querySelector('body'),
+        sidebar = body.querySelector('nav'),
+        toggle = body.querySelector(".toggle"),
+        searchBtn = body.querySelector(".search-box"),
+        modeSwitch = body.querySelector(".toggle-switch"),
+        modeText = body.querySelector(".mode-text");
+
+
+        toggle.addEventListener("click" , () =>{
+            sidebar.classList.toggle("close");
+        })
+
+        searchBtn.addEventListener("click" , () =>{
+            sidebar.classList.remove("close");
+        })
+
+        modeSwitch.addEventListener("click" , () =>{
+            body.classList.toggle("dark");
+            
+            if(body.classList.contains("dark")){
+                modeText.innerText = "Light mode";
+            }else{
+                modeText.innerText = "Dark mode";
+                
+            }
+        });
+    </script>
+
 </body>
 </html>
+
