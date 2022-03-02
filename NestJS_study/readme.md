@@ -66,8 +66,43 @@ bootstrap();
 - 각 응용 프로그램에는 하나 이상의 모듈(root module)이 있음
 - root module: Nest가 사용하는 시작점
 - 같은 기능에 해당하는 것들은 하나의 모듈 폴더 안에 넣어서 사용
-- 모듈은 기본적으로 Single-tone → 여러 모듈 간 쉽게 공급자의 동일한 인스턴스 공유 가능
+- 모듈은 기본적으로 Single-tone → 여러 모듈 간 쉽게 공급자의 동일한 인스턴스 공유 가능  
+
+### ❖ Module 생성 명령어
+```shell
+$ nest g module 모듈이름
+```  
+- nest: nest-cli 사용
+- g: generate  
+
+## 5. NestJS 컨트롤러
+: 들어오는 request를 처리하고 클라이언트에 response를 반환  
+
+- **@Controller() 데코레이터**: 컨트롤러 클래스 정의  
+- **Handler**: @Get, @Post, @Delete 등과 같은 데코레이터로 장신 된 컨트롤러 클래스 내의 단순한 메서드
+
+### ❖ Controller 생성 명령어
+```shell
+$ nest g controller 컨트롤러이름 --no-spec
+```  
+- --no-spec: 테스트를 위한 소스 코드를 생성하지 않는 옵션  
+
+## 6. NestJS 서비스
+: Service 안에서 DB 관련 로직 처리  
+```shell
+$ nest g service 서비스이름 --no-spec
+```  
+- 생성된 Service에는 Injectable 데코레이터가 있음
+- **Injectable** → 다른 컴포넌트에서 이 서비스를 사용할 수 있게 만듦  
+
+### ❖ Service를 Controller에서 이용할 수 있게 해주기
+: Nest JS에서 Dependency Injection은 클래스의 Constructor 안에서 이루어 짐
+**☛ Dependency Injection**  
+
+- 📝 Typescript의 도움을 받아 접근 제한자 사용 가능  
+
+<img src='./img/dependencyInjection.png'>  
 
 * * *
 
-참고 영상: [John Ahn님 강의](https://www.youtube.com/watch?v=3JminDpCJNE)
+참고 영상 및 이미지 출처: [John Ahn님 강의](https://www.youtube.com/watch?v=3JminDpCJNE)
