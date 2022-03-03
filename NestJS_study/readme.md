@@ -88,7 +88,8 @@ $ nest g controller 컨트롤러이름 --no-spec
 - --no-spec: 테스트를 위한 소스 코드를 생성하지 않는 옵션  
 
 ## 6. NestJS 서비스
-: Service 안에서 DB 관련 로직 처리  
+: Controller에서 데이터의 유효성 체크를 하거나 DB에 item을 생성하는 등의 작업 처리  
+→ **@Injectable** 데코레이터로 감싸져서 모듈에 제공되며, 이 Service Instance는 application 전체에서 사용 가능  
 ```shell
 $ nest g service 서비스이름 --no-spec
 ```  
@@ -101,9 +102,26 @@ $ nest g service 서비스이름 --no-spec
 
 - 📝 Typescript의 도움을 받아 접근 제한자 사용 가능  
 
-<img src='./img/dependencyInjection.png'>  
+<img src='./img/dependencyInjection.png'>    
 
-dd
+→ 접근 제한자를 생성자 파라미터에 선언하면 접근 제한자가 사용된 생성자 파라미터는 암묵적으로 class property로 선언됨  
+
+### Provider란?
+: Nest의 기본 개념으로, 대부분의 Nest 클래스는 service, repository, factory, helper 등 provider로 취급될 수 있음  
+→ 종속성 주입 가능 (필요한 서비스를 컨트롤러에 넣어주는 것)  
+#### 객체는 서로 다양한 관계를 만들 수 있으며, 객체의 instance를 연결하는 기능은 대부분 Nest 런타임 시스템에 위임될 수 있음
+→ Provider를 사용하기 위해서 **module** 파일에 providers 항목 안에 해당 module에서 사용하고자 하는 Provider를 넣어주면 됨  
+
+
+## 7. DTO(; Data Transfer Object)
+: 객체간 데이터 교환을 위한 객체  
+: DB에서 데이터를 얻어 Service나 Controller 등으로 보낼 떄 사용하는 객체  
+: 데이터가 Network를 통해 전송되는 방법을 정의하는 객체  
+  
+- 데이터 유효성을 체크하는 데 효율적
+- 더 안정적인 코드로 만들어 줌 (TS의 타입으로도 사용됨)
+- 많은 Property를 갖고 여러 군데에서 사용하다가 name 수정 시 용이
+    - ☛ application 유지보수 용이  
 
 * * *
 
