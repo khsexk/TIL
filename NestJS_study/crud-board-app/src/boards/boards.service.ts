@@ -26,4 +26,19 @@ export class BoardsService {
         this.boards.push(board);
         return board;
     }
+
+    getBoardById(id: string): Board {
+        return this.boards.find((board) => board.id === id);
+    }
+
+    // filter:  주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환
+    deleteBoard(id: string): void {
+        this.boards = this.boards.filter((board) => board.id !== id); // 같은 것만 삭제
+    }
+
+    updateBoardStatus(id: string, status: BoardStatus): Board {
+        const board = this.getBoardById(id);
+        board.status = status;
+        return board;
+    }
 }
