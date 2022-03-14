@@ -35,7 +35,10 @@
     - 속도에 민감한 경우
     - 간단한 설정이 필요한 경우
     - 간단한 복제 작업을 원하는 경우  
-  
+
+- **PostgresSQL 설치**: https://postgresapp.com/downloads.html
+- **pgAdmin 설치**: https://www.pgadmin.org/download/
+
 
 ### ❖ Firebase
 
