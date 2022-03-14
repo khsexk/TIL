@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 
 
@@ -28,12 +28,21 @@ export class BoardsService {
     }
 
     getBoardById(id: string): Board {
-        return this.boards.find((board) => board.id === id);
+        const found = this.boards.find((board) => board.id === id);
+        
+        // 찾을 수 없는 게시물 처리
+        if(!found) {
+            throw new NotFoundException(`cannot found id: ${id}`);
+        }
+        return found;
     }
 
     // filter:  주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환
     deleteBoard(id: string): void {
-        this.boards = this.boards.filter((board) => board.id !== id); // 같은 것만 삭제
+        // getBoardById의 유효성 체크로 없는 게시물 삭제에 대한 처리
+        const found = this.getBoardById(id);
+
+        this.boards = this.boards.filter((board) => board.id !== found.id); // 같은 것만 삭제
     }
 
     updateBoardStatus(id: string, status: BoardStatus): Board {
