@@ -1,4 +1,4 @@
-# TypeORM이란?
+# 1. TypeORM이란?
 
 ### ✎ 정의
 : node js에서 실행되고 TypeScript로 작성된 객체 관계형 매퍼 라이브러리
@@ -74,4 +74,45 @@ npm install pg typeorm @nestjs/typeorm
 })
 export class AppModule {}
 ```  
-- forRoot 안에 넣어준 설정(configuration)은 모든 Sub-Module 부수적인 모듈들에 다 적용됨
+- forRoot 안에 넣어준 설정(configuration)은 모든 Sub-Module 부수적인 모듈들에 다 적용됨  
+  
+# 2. Entity
+→ TypeORM을 사용할 때는 DB 테이블로 변환되는 class이기 때문에 클래스를 생성한 후 그 안에 컬럼들을 정의해줘야 함  
+
+- **@Entity()** : 클래스가 엔티티임을 나타내는 데 사용
+- **@PrimaryGeneratedColumn()** : 지정된 열이 엔티티의 기본 키 열임을 표현
+- **@Column** : 엔티티의 기본 키가 아닌 열  
+```typescript
+import { BaseEntity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { BoardStatus } from "./board.model";
+
+export class Board extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    title: string;
+
+    @Column()
+    description: string;
+
+    @Column()
+    status: BoardStatus;
+}
+```
+
+# 3. Repository
+: Entity 개체와 함께 작동하며 Entity 찾기, 삽입, 업데이트, 삭제 등을 처리  
+→ DB와 관련된 일은 Service가 아닌 Repository에서 해줌 : **Repository Pattern**  
+#### [Document](https://typeorm.delightful.studio/classes/_repository_repository_.repository.html)
+
+### 📝 Repository 생성하기
+- 1. Repository 파일 생성
+- 2. 생성한 파일에 Repository를 위한 클래스 생성
+    - 생성 시 Repository 클래스를 Extends 해줌
+    - **@EntityRepository()**
+        - 클래스를 사용자 정의 저장소로 선언하는 데 사용됨
+        - 사용자 지정 저장소는 일부 특정 엔티티를 관리하거나 일반 저장소일 수 있음
+- 3. 생성한 Repository를 다른 곳에서도 사용할 수 있게 module에서 import해줌  
+```typescript
+```
